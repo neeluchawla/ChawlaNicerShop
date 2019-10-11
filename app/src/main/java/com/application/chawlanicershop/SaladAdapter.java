@@ -60,6 +60,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.addToQuantity();
+                Log.d(LOG_TAG,"Item added :" + product.getTitle()+" Price of product : "+product.getSubtotal() );
                 Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 
@@ -71,6 +72,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.subQuantity();
+                Log.d(LOG_TAG,"Item Removed :" + product.getTitle()+" Price of product : "+product.getSubtotal() );
                 Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 

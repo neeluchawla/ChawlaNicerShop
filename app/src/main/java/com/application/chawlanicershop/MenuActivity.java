@@ -154,11 +154,12 @@ public class MenuActivity extends AppCompatActivity {
         while(i < saladList.size()){
             if(saladList.get(i).getQuantity()>0) {
                 subtotal = subtotal + (saladList.get(i).getPrice() * Integer.valueOf(saladList.get(i).getQuantity()));
+                Log.d(LOG_TAG,"now subtotal is:"+subtotal);
             }
             i++;
 
         }
-        Log.d(LOG_TAG,"subtotal is:"+subtotal);
+
 
 //        //find the view
 //        tv_subtotal =(TextView) findViewById(R.id.non_taxTotal);
