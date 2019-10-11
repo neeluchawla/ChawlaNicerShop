@@ -7,45 +7,10 @@
     tools:context=".MenuActivity">
 
 
-    <LinearLayout
-        android:id="@+id/layout_total"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:padding="5dp"
-        android:weightSum="2"
-        android:orientation="vertical" >
-
-        <TextView android:gravity="end"
-            android:id="@+id/non_taxTotal"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:text="Price Before Tax : 0 CAD "
-            android:textSize="12dp">
-        </TextView>
-        <TextView android:gravity="end"
-            android:id="@+id/tax"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:text="Tax : 0 CAD "
-            android:textSize="12dp">
-        </TextView>
-        <TextView android:gravity="end"
-            android:id="@+id/tv_total"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:text="Price After Tax : 0 CAD"
-            android:textStyle="bold"
-            android:textSize="15dp">
-        </TextView>
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_above="@+id/btn_placeorder"
-        android:layout_below="@+id/layout_total"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

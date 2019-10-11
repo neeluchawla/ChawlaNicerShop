@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CheckOutActivity">
 
+
+    <TextView
+        android:id="@+id/non_taxTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/general_text_price_before_tax"
+        android:textSize="12dp"
+        />
+
+        <TextView
+            android:id="@+id/tax_gst"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:text="@string/general_text_tax_gst"
+            android:layout_below="@+id/non_taxTotal"
+            android:textSize="12dp"/>
+
+    <TextView
+        android:id="@+id/tax_qst"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:text="@string/general_text_tax_qst"
+        android:layout_below="@+id/tax_gst"
+        android:textSize="12dp"/>
+
+    <TextView
+        android:id="@+id/tv_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tax_qst"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="0dp"
+        android:layout_weight="1"
+        android:text="@string/general_text_price_after_tax"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_total"
+        android:layout_marginTop="69dp"
         android:text="@string/thank_message"
         tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="100dp"
-        tools:ignore="MissingConstraints" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:layout_editor_absoluteY="100dp" />
+
+</RelativeLayout>

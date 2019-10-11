@@ -3,6 +3,7 @@ package com.application.chawlanicershop;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG =
+            MenuActivity.class.getSimpleName();
 
     //a list to store all the products
     List<Salad> saladList;
@@ -41,41 +45,42 @@ public class MenuActivity extends AppCompatActivity {
         saladList = new ArrayList<>();
 
 
+        Log.d(LOG_TAG,"define the salad list");
         //adding some items to our list
         saladList.add(
                 new Salad(
                         1,
-                        "SEARED TUNA SALAD",
-                        "mixed greens, arugula, kale, avocado, cucumber, edamame, super slaw, apples, tempura onions, toasted sesame seeds, spicy togarashi seared tuna",
+                        getString(R.string.salad1_title),
+                        getString(R.string.salad1_description),
                         20.99,
                         R.drawable.sesame_salad));
 
         saladList.add(
                 new Salad(
                         2,
-                        "ASIAN SALAD",
-                        "romaine lettuce, mixed greens, avocado, mandarin oranges, cherry tomatoes, shredded carrots, crunchy noodles, toasted sesame seeds",
+                        getString(R.string.salad2_title),
+                        getString(R.string.salad2_description),
                         11.49,
                         R.drawable.asian_salad));
 
         saladList.add(
                 new Salad(
                         3,
-                        "CAESAR SALAD",
-                        "kale, romaine lettuce, baked pita chips, mozzarella, shaved parmesan, bacon, free run hard boiled egg",
+                        getString(R.string.salad3_title),
+                        getString(R.string.salad3_description),
                         14.49,
                         R.drawable.caesar_salad));
         saladList.add(
                 new Salad(
                         4,
-                        "HARVEST SALAD",
-                        "romaine lettuce, mixed greens, cherry tomatoes, roasted sweet potato, dried cranberries, pecans, pumpkin seeds, goat cheese",
+                        getString(R.string.salad4_title),
+                        getString(R.string.salad4_description),
                         13.99,
                         R.drawable.harvest_salad));
 
         //creating recyclerview adapter
         SaladAdapter adapter = new SaladAdapter(this, saladList);
-
+        Log.d(LOG_TAG,"Setting adapter to recyclerview ");
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
         adapter.registerAdapterDataObserver(observer);
@@ -91,7 +96,8 @@ public class MenuActivity extends AppCompatActivity {
     };
 
 
-    public void calculateTotal() {
+    public double calculateTotal() {
+        Log.d(LOG_TAG,"calculate subtotal");
         int i = 0;
         total=0;
         tax=0;
@@ -103,20 +109,21 @@ public class MenuActivity extends AppCompatActivity {
             i++;
 
         }
-        Map<String,Double> tax=taxCalculation(subtotal);
+        Log.d(LOG_TAG,"subtotal is:"+subtotal);
 
-        //find the view
-        tv_subtotal =(TextView) findViewById(R.id.non_taxTotal);
-        tv_tax=(TextView) findViewById(R.id.tax);
-        tv_total =(TextView) findViewById(R.id.tv_total);
-        Button btn = (Button) findViewById(R.id.btn_placeorder);
-        //setting the value
-        tv_subtotal.setText("Price Before Tax :"+df2.format(subtotal)+" "+"CAD");
-        tv_tax.setText("Tax : GST: "+df2.format(tax.get("GST"))+" "+"CAD, QST: "+df2.format(tax.get("QST"))+" "+"CAD");
-        tv_total.setText("Price After Tax :"+df2.format(subtotal+tax.get("GST")+tax.get("QST"))+" "+"CAD");
+//        //find the view
+//        tv_subtotal =(TextView) findViewById(R.id.non_taxTotal);
+//        tv_tax=(TextView) findViewById(R.id.tax);
+//        tv_total =(TextView) findViewById(R.id.tv_total);
+       Button btn = (Button) findViewById(R.id.btn_placeorder);
+//        //setting the value
+//        tv_subtotal.setText("Price Before Tax :"+df2.format(subtotal)+" "+"CAD");
+//        tv_tax.setText("Tax : GST: "+df2.format(tax.get("GST"))+" "+"CAD, QST: "+df2.format(tax.get("QST"))+" "+"CAD");
+//        tv_total.setText("Price After Tax :"+df2.format(subtotal+tax.get("GST")+tax.get("QST"))+" "+"CAD");
 
         //enable the button and disable when
         //no product is added for order
+        Log.d(LOG_TAG,"set property to enable/disable place order button");
         if(subtotal>0) {
             btn.setEnabled(true);
             btn.setBackgroundColor(Color.GREEN);
@@ -125,9 +132,11 @@ public class MenuActivity extends AppCompatActivity {
             btn.setEnabled(false);
             btn.setBackgroundColor(Color.GRAY);
         }
+        return subtotal;
     }
 
     private Map<String,Double> taxCalculation(double total){
+        Log.d(LOG_TAG,"function to calculate tax");
         //gst 5% and qst 9.975%
         double gst=total*0.05;
         double qst=total*0.09975;
@@ -137,8 +146,14 @@ public class MenuActivity extends AppCompatActivity {
         return tax;
     }
     public void insertOrder(View view) {
-
+        Log.d(LOG_TAG,"function to call checkoutActivity ");
         Intent intent = new Intent(this, CheckOutActivity.class);
+        double subtotal=calculateTotal();
+        Map<String,Double> tax=taxCalculation(subtotal);
+        intent.putExtra("SubTotal",df2.format(subtotal));
+        intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
+        intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
+        intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")));
         startActivity(intent);
     }
 }

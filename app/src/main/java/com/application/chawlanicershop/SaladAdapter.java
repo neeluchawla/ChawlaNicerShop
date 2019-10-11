@@ -1,6 +1,7 @@
 package com.application.chawlanicershop;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,8 @@ import java.util.List;
 
 public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewHolder> {
 
-
+    private static final String LOG_TAG =
+            SaladAdapter.class.getSimpleName();
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -38,6 +40,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
+        Log.d(LOG_TAG,"inflating and returning our view holder");
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.saladcardview, null);
         return new ProductViewHolder(view);
@@ -46,8 +49,9 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
     @Override
     public void onBindViewHolder(final ProductViewHolder holder, final int position) {
         //getting the product of the specified position
+        Log.d(LOG_TAG,"getting the product of the specified position");
         final Salad product = saladList.get(position);
-
+        Log.d(LOG_TAG,"binding the data with the viewholder views");
         //binding the data with the viewholder views
         holder.textViewTitle.setText(product.getTitle());
         holder.textViewDesc.setText(product.getDescription());
@@ -56,6 +60,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.addToQuantity();
+                Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 
 
@@ -66,6 +71,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.subQuantity();
+                Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 
 
@@ -89,12 +95,14 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-
+        private final String LOG_TAG =
+                ProductViewHolder.class.getSimpleName();
         TextView textViewTitle, textViewDesc, textViewQuantity, textViewPrice,textViewSubTotal;
         ImageView imageView,reduce_quantity,add_quantity;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
+            Log.d(LOG_TAG,"Initalizing the views that belong to items of recyclerview");
             reduce_quantity=(ImageView) itemView.findViewById(R.id.reduceQuantity);
             add_quantity=(ImageView) itemView.findViewById(R.id.addQuantity);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);

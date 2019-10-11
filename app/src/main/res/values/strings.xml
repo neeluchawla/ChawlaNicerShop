@@ -6,4 +6,16 @@
     <string name="salad_name">Salad name</string>
     <string name="salad_description">Salad Description</string>
     <string name="thank_message">Thank You for Placing the order</string>
+    <string name="general_text_price_before_tax">Price Before Tax : 0 CAD</string>
+    <string name="general_text_tax_gst">GST Tax : 0 CAD</string>
+    <string name="general_text_tax_qst">QST Tax : 0 CAD</string>
+    <string name="general_text_price_after_tax">Price After Tax : 0 CAD</string>
+    <string name="salad1_title">SEARED TUNA SALAD</string>
+    <string name="salad1_description">mixed greens, arugula, kale, avocado, cucumber, edamame, super slaw, apples, tempura onions, toasted sesame seeds, spicy togarashi seared tuna</string>
+    <string name="salad2_title">ASIAN SALAD</string>
+    <string name="salad2_description">romaine lettuce, mixed greens, avocado, mandarin oranges, cherry tomatoes, shredded carrots, crunchy noodles, toasted sesame seeds</string>
+    <string name="salad3_title">CAESAR SALAD</string>
+    <string name="salad3_description">kale, romaine lettuce, baked pita chips, mozzarella, shaved parmesan, bacon, free run hard boiled egg</string>
+    <string name="salad4_title">HARVEST SALAD</string>
+    <string name="salad4_description">romaine lettuce, mixed greens, cherry tomatoes, roasted sweet potato, dried cranberries, pecans, pumpkin seeds, goat cheese</string>
 </resources>

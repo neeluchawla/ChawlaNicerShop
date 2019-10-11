@@ -1,6 +1,8 @@
 package com.application.chawlanicershop;
 
 
+import android.util.Log;
+
 import java.text.DecimalFormat;
 
 /*
@@ -19,12 +21,15 @@ public class Salad {
     private int subQuantity;
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
+    private static final String LOG_TAG =
+            Salad.class.getSimpleName();
     public Salad(int thumbnail){
 
         this.thumbnail = thumbnail;
     }
 
     public Salad(int id, String title, String description, double price, int thumbnail) {
+        Log.d(LOG_TAG,"constructor to set value");
         this.title = title;
         this.price = price;
         this.thumbnail=thumbnail;
@@ -86,11 +91,14 @@ public class Salad {
     }
 
     public void addToQuantity(){
+
+        Log.d(LOG_TAG,"add quantity");
         this.quantity += 1;
     }
 
     public void subQuantity(){
         if(this.quantity >= 1){
+            Log.d(LOG_TAG,"reduce quantity");
             this.quantity -= 1;
         }
     }

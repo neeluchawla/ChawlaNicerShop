@@ -20,6 +20,7 @@
         <activity
             android:name=".MenuActivity"
             android:label="Menu Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
