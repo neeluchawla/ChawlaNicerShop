@@ -70,6 +70,7 @@ public class MenuActivity extends AppCompatActivity {
                         getString(R.string.salad3_description),
                         14.49,
                         R.drawable.caesar_salad));
+
         saladList.add(
                 new Salad(
                         4,
@@ -77,6 +78,54 @@ public class MenuActivity extends AppCompatActivity {
                         getString(R.string.salad4_description),
                         13.99,
                         R.drawable.harvest_salad));
+
+        saladList.add(
+                new Salad(
+                        5,
+                        getString(R.string.salad5_title),
+                        getString(R.string.salad5_description),
+                        13.99,
+                        R.drawable.tokyo_salad));
+
+        saladList.add(
+                new Salad(
+                        6,
+                        getString(R.string.salad6_title),
+                        getString(R.string.salad6_description),
+                        15.49,
+                        R.drawable.cobb_salad));
+
+        saladList.add(
+                new Salad(
+                        7,
+                        getString(R.string.salad7_title),
+                        getString(R.string.salad7_description),
+                        15.99,
+                        R.drawable.endless_summer_salad));
+
+        saladList.add(
+                new Salad(
+                        8,
+                        getString(R.string.salad8_title),
+                        getString(R.string.salad8_description),
+                        13.99,
+                        R.drawable.habibi_salad));
+
+        saladList.add(
+                new Salad(
+                        9,
+                        getString(R.string.salad9_title),
+                        getString(R.string.salad9_description),
+                        14.49,
+                        R.drawable.the_wolfe_salad));
+
+        saladList.add(
+                new Salad(
+                        10,
+                        getString(R.string.salad10_title),
+                        getString(R.string.salad10_description),
+                        11.49,
+                        R.drawable.the_clean_green_salad));
 
         //creating recyclerview adapter
         SaladAdapter adapter = new SaladAdapter(this, saladList);

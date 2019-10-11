@@ -18,4 +18,17 @@
     <string name="salad3_description">kale, romaine lettuce, baked pita chips, mozzarella, shaved parmesan, bacon, free run hard boiled egg</string>
     <string name="salad4_title">HARVEST SALAD</string>
     <string name="salad4_description">romaine lettuce, mixed greens, cherry tomatoes, roasted sweet potato, dried cranberries, pecans, pumpkin seeds, goat cheese</string>
+    <string name="salad5_title">Tokyo Salad</string>
+    <string name="salad5_description">romaine lettuce, mixed greens, shredded carrots, broccoli, cucumber, avocado, purple cabbage, toasted sesame seeds, tamari citrus tofu</string>
+    <string name="salad6_title">Cobb Salad</string>
+    <string name="salad6_description">romaine lettuce, mixed greens, cherry tomatoes, avocado, green onions, mushrooms, baked pita chips, bacon, free run hard boiled egg</string>
+    <string name="salad7_title">Endless Summer</string>
+    <string name="salad7_description">romaine lettuce, mixed greens, kale, quinoa, shredded carrots, cucumber, avocado, tempura onions, pomegranate seeds, sesame seeds, cilantro, basil, tamari mock chicken</string>
+    <string name="salad8_title">Habibi</string>
+    <string name="salad8_description">romaine lettuce, mixed greens, quinoa, parsley, mint, chickpeas, roasted sweet potato, cherry tomatoes, cucumbers, red onion, feta</string>
+    <string name="salad9_title">The Wolfe</string>
+    <string name="salad9_description">mixed greens, arugula, kale, quinoa, cherry tomatoes, avocado, shredded carrots, toasted walnuts, toasted sesame seeds, shaved parmesan</string>
+    <string name="salad10_title">The Clean Green</string>
+    <string name="salad10_description">romaine lettuce, mixed greens, basil, cilantro, mint, broccoli, cucumber, edamame, purple cabbage, green onions, pumpkin seeds</string>
+    <string name="title_activity_floating_action">FloatingActionActivity</string>
 </resources>
