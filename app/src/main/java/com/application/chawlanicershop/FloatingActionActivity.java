@@ -55,7 +55,6 @@ public class FloatingActionActivity extends AppCompatActivity {
                 AlertDialog.Builder myAlertBuilder = new
                         AlertDialog.Builder(FloatingActionActivity.this);
                 myAlertBuilder.setTitle(getString(R.string.shipping_alert));
-                myAlertBuilder.setMessage(getString(R.string.delivery_options));
                 String[] delivery_options = {"express ($50)", "regular ($10)", "no hurry (no cost)"};
                 int checkedItem = 0; //
                 myAlertBuilder.setSingleChoiceItems(delivery_options, checkedItem, new DialogInterface.OnClickListener() {
@@ -68,8 +67,15 @@ public class FloatingActionActivity extends AppCompatActivity {
                         DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // User clicked OK button.
-                                Toast.makeText(getApplicationContext(), "Processed to Place order",
-                                        Toast.LENGTH_SHORT).show();
+                                Log.d(LOG_TAG,"function to call checkoutActivity ");
+                                Intent intent = new Intent(FloatingActionActivity.this, CheckOutActivity.class);
+                                double subtotal=calculateTotal();
+                                Map<String,Double> tax=taxCalculation(subtotal);
+                                intent.putExtra("SubTotal",df2.format(subtotal));
+                                intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
+                                intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
+                                intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")));
+                                startActivity(intent);
                             }
                         });
                 myAlertBuilder.setNegativeButton("Cancel", new
