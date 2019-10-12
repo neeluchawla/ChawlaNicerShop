@@ -16,13 +16,23 @@
         android:textSize="12dp"
         />
 
-        <TextView
+    <TextView
+        android:id="@+id/shipping_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/general_shipping_cost"
+        android:layout_below="@+id/non_taxTotal"
+        android:textSize="12dp"
+        />
+
+    <TextView
             android:id="@+id/tax_gst"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:text="@string/general_text_tax_gst"
-            android:layout_below="@+id/non_taxTotal"
+            android:layout_below="@+id/shipping_price"
             android:textSize="12dp"/>
 
     <TextView

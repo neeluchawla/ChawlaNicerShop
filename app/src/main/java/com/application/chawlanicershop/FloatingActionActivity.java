@@ -36,7 +36,7 @@ public class FloatingActionActivity extends AppCompatActivity {
 
     //the recyclerview
     RecyclerView recyclerView;
-    public double total,subtotal,tax;
+    public double total,subtotal,tax,shipping_cost;
     SaladAdapter saladAdapter;
     public static TextView tv_total,tv_subtotal,tv_tax;
     private static DecimalFormat df2 = new DecimalFormat("#.##");
@@ -56,25 +56,42 @@ public class FloatingActionActivity extends AppCompatActivity {
                         AlertDialog.Builder(FloatingActionActivity.this);
                 myAlertBuilder.setTitle(getString(R.string.shipping_alert));
                 String[] delivery_options = {"express ($50)", "regular ($10)", "no hurry (no cost)"};
-                int checkedItem = 0; //
+                int checkedItem = 2; //
                 myAlertBuilder.setSingleChoiceItems(delivery_options, checkedItem, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d(LOG_TAG,String.valueOf(which));
+                    public void onClick(DialogInterface dialog, int item) {
+                        switch (item){
+                            case 0:
+                                shipping_cost=50;
+                                break;
+                            case 1:
+                                shipping_cost=10;
+                                break;
+                            case 3:
+                                shipping_cost=0;
+                                break;
+                            default:
+                                break;
+                        }
+                        Log.d(LOG_TAG,"Item selected from drop down is"+item);
                     }
                 });
                 myAlertBuilder.setPositiveButton("Place Order", new
                         DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int item) {
                                 // User clicked OK button.
                                 Log.d(LOG_TAG,"function to call checkoutActivity ");
                                 Intent intent = new Intent(FloatingActionActivity.this, CheckOutActivity.class);
                                 double subtotal=calculateTotal();
-                                Map<String,Double> tax=taxCalculation(subtotal);
+
+
+                                Map<String,Double> tax=taxCalculation(subtotal+shipping_cost);
+                                Log.d(LOG_TAG,"shopping cost is "+shipping_cost);
                                 intent.putExtra("SubTotal",df2.format(subtotal));
+                                intent.putExtra("Shipping_cost",df2.format(shipping_cost));
                                 intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
                                 intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
-                                intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")));
+                                intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")+shipping_cost));
                                 startActivity(intent);
                             }
                         });
@@ -218,7 +235,7 @@ public class FloatingActionActivity extends AppCompatActivity {
 //        tv_subtotal =(TextView) findViewById(R.id.non_taxTotal);
 //        tv_tax=(TextView) findViewById(R.id.tax);
 //        tv_total =(TextView) findViewById(R.id.tv_total);
-        Button btn = (Button) findViewById(R.id.btn_placeorder);
+ //       FloatingActionButton btn = findViewById(R.id.fab);
 //        //setting the value
 //        tv_subtotal.setText("Price Before Tax :"+df2.format(subtotal)+" "+"CAD");
 //        tv_tax.setText("Tax : GST: "+df2.format(tax.get("GST"))+" "+"CAD, QST: "+df2.format(tax.get("QST"))+" "+"CAD");
@@ -226,10 +243,10 @@ public class FloatingActionActivity extends AppCompatActivity {
 
         //enable the button and disable when
         //no product is added for order
-        Log.d(LOG_TAG,"set property to enable/disable place order button");
+//        Log.d(LOG_TAG,"set property to enable/disable place order button");
 //        if(subtotal>0) {
 //            btn.setEnabled(true);
-//            btn.setBackgroundColor(Color.GREEN);
+//            btn.setBackgroundColor(Color.RED);
 //        }
 //        else{
 //            btn.setEnabled(false);

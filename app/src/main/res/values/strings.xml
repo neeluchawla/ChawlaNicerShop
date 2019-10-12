@@ -6,10 +6,11 @@
     <string name="salad_name">Salad name</string>
     <string name="salad_description">Salad Description</string>
     <string name="thank_message">Thank You for Placing the order</string>
-    <string name="general_text_price_before_tax">Price Before Tax : 0 CAD</string>
-    <string name="general_text_tax_gst">GST Tax : 0 CAD</string>
-    <string name="general_text_tax_qst">QST Tax : 0 CAD</string>
-    <string name="general_text_price_after_tax">Price After Tax : 0 CAD</string>
+    <string name="general_text_price_before_tax">Price Before Tax : </string>
+    <string name="general_text_tax_gst">GST Tax : </string>
+    <string name="general_text_tax_qst">QST Tax : </string>
+    <string name="general_text_price_after_tax">Overall Total : </string>
+    <string name="default_curreny_value">0 CAD</string>
     <string name="salad1_title">SEARED TUNA SALAD</string>
     <string name="salad1_description">mixed greens, arugula, kale, avocado, cucumber, edamame, super slaw, apples, tempura onions, toasted sesame seeds, spicy togarashi seared tuna</string>
     <string name="salad2_title">ASIAN SALAD</string>
@@ -37,4 +38,5 @@
     <string name="product_price_text"> Price of product : </string>
     <string name="shipping_alert">Shipping Alert</string>
     <string name="delivery_options">Delivery Options:</string>
+    <string name="general_shipping_cost">Shipping Cost :</string>
 </resources>
