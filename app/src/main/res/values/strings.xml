@@ -30,5 +30,11 @@
     <string name="salad9_description">mixed greens, arugula, kale, quinoa, cherry tomatoes, avocado, shredded carrots, toasted walnuts, toasted sesame seeds, shaved parmesan</string>
     <string name="salad10_title">The Clean Green</string>
     <string name="salad10_description">romaine lettuce, mixed greens, basil, cilantro, mint, broccoli, cucumber, edamame, purple cabbage, green onions, pumpkin seeds</string>
-    <string name="title_activity_floating_action">FloatingActionActivity</string>
+    <string name="title_activity_floating_action">Menu</string>
+    <string name="currency">CAD</string>
+    <string name="item_added_text">Item added :</string>
+    <string name="item_removed_text">Item removed :</string>
+    <string name="product_price_text"> Price of product : </string>
+    <string name="shipping_alert">Shipping Alert</string>
+    <string name="delivery_options">Delivery Options:</string>
 </resources>

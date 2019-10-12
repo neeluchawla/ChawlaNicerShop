@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -43,7 +44,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
         Log.d(LOG_TAG,"inflating and returning our view holder");
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.saladcardview, null);
-        return new ProductViewHolder(view);
+        return new ProductViewHolder(view,this);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.addToQuantity();
-                Log.d(LOG_TAG,"Item added :" + product.getTitle()+" Price of product : "+product.getSubtotal() );
+                Log.d(LOG_TAG,mCtx.getString(R.string.item_added_text) + product.getTitle()+mCtx.getString(R.string.product_price_text)+product.getSubtotal() );
                 Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 
@@ -72,7 +73,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             @Override
             public void onClick(View v) {
                 product.subQuantity();
-                Log.d(LOG_TAG,"Item Removed :" + product.getTitle()+" Price of product : "+product.getSubtotal() );
+                Log.d(LOG_TAG,mCtx.getString(R.string.item_removed_text) + product.getTitle()+mCtx.getString(R.string.product_price_text)+product.getSubtotal() );
                 Log.d(LOG_TAG,"notifyChange");
                 notifyDataSetChanged();
 
@@ -81,8 +82,8 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
         });
 
         holder.textViewQuantity.setText(String.valueOf(product.getQuantity()));
-        holder.textViewPrice.setText(String.valueOf(product.getPrice())+" "+"CAD");
-        holder.textViewSubTotal.setText(String.valueOf(product.getSubtotal()) + " " + "CAD");
+        holder.textViewPrice.setText(String.valueOf(product.getPrice())+mCtx.getString(R.string.currency));
+        holder.textViewSubTotal.setText(String.valueOf(product.getSubtotal()) + mCtx.getString(R.string.currency));
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getThumbnail()));
 
     }
@@ -95,14 +96,15 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final String LOG_TAG =
                 ProductViewHolder.class.getSimpleName();
         TextView textViewTitle, textViewDesc, textViewQuantity, textViewPrice,textViewSubTotal;
         ImageView imageView,reduce_quantity,add_quantity;
+        final SaladAdapter saladAdapter;
 
-        public ProductViewHolder(View itemView) {
+        public ProductViewHolder(View itemView,SaladAdapter adapter) {
             super(itemView);
             Log.d(LOG_TAG,"Initalizing the views that belong to items of recyclerview");
             reduce_quantity=(ImageView) itemView.findViewById(R.id.reduceQuantity);
@@ -113,6 +115,23 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
             textViewSubTotal=itemView.findViewById(R.id.textViewSubTotal);
+            this.saladAdapter = adapter;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+// Get the position of the item that was clicked.
+            int mPosition = getLayoutPosition();
+            Log.d(LOG_TAG,String.valueOf(mPosition));
+            // Use that to access the affected item in mWordList.
+            String element = String.valueOf(saladList.get(mPosition));
+            // Change the word in the mWordList.
+
+//            mWordList.set(mPosition, "Clicked! " + element);
+            // Notify the adapter, that the data has changed so it can
+            // update the RecyclerView to display the data.
+            saladAdapter.notifyDataSetChanged();
         }
     }
 }
