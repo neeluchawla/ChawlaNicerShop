@@ -39,4 +39,19 @@
     <string name="shipping_alert">Shipping Alert</string>
     <string name="delivery_options">Delivery Options:</string>
     <string name="general_shipping_cost">Shipping Cost :</string>
+    <string name="extra_Shipping_cost">Shipping_cost</string>
+    <string name="extra_SubTotal">SubTotal</string>
+    <string name="extra_Tax_GST">Tax_GST</string>
+    <string name="extra_Tax_QST">Tax_QST</string>
+    <string name="extra_Total">Total</string>
+    <string name="delivery1">express ($50)</string>
+    <string name="delivery2">regular ($10)</string>
+    <string name="delivery3">no hurry (no cost)</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="return_to_main">Return to Menu</string>
+    <string name="no_product_selected_message">Select add quantity for atleast one salad</string>
+    <string name="salad_price">Salad Price</string>
+    <string name="salad_subtotal">Salad Subtotal</string>
+    <string name="gst">GST</string>
+    <string name="qst">QST</string>
 </resources>

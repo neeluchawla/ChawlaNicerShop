@@ -82,8 +82,8 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
         });
 
         holder.textViewQuantity.setText(String.valueOf(product.getQuantity()));
-        holder.textViewPrice.setText(String.valueOf(product.getPrice())+mCtx.getString(R.string.currency));
-        holder.textViewSubTotal.setText(String.valueOf(product.getSubtotal()) + mCtx.getString(R.string.currency));
+        holder.textViewPrice.setText(String.valueOf(product.getPrice())+" "+mCtx.getString(R.string.currency));
+        holder.textViewSubTotal.setText(String.valueOf(product.getSubtotal()) +" "+ mCtx.getString(R.string.currency));
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getThumbnail()));
 
     }

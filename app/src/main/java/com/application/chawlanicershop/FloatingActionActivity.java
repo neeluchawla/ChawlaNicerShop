@@ -51,59 +51,63 @@ public class FloatingActionActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(LOG_TAG,"function to call checkoutActivity ");
-                AlertDialog.Builder myAlertBuilder = new
-                        AlertDialog.Builder(FloatingActionActivity.this);
-                myAlertBuilder.setTitle(getString(R.string.shipping_alert));
-                String[] delivery_options = {"express ($50)", "regular ($10)", "no hurry (no cost)"};
-                int checkedItem = 2; //
-                myAlertBuilder.setSingleChoiceItems(delivery_options, checkedItem, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
-                        switch (item){
-                            case 0:
-                                shipping_cost=50;
-                                break;
-                            case 1:
-                                shipping_cost=10;
-                                break;
-                            case 3:
-                                shipping_cost=0;
-                                break;
-                            default:
-                                break;
+                double subtotal = calculateTotal();
+                if (subtotal <= 0) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.no_product_selected_message),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d(LOG_TAG, "function to call checkoutActivity ");
+                    AlertDialog.Builder myAlertBuilder = new
+                            AlertDialog.Builder(FloatingActionActivity.this);
+                    myAlertBuilder.setTitle(getString(R.string.shipping_alert));
+                    String[] delivery_options = {getString(R.string.delivery1), getString(R.string.delivery2), getString(R.string.delivery3)};
+                    int checkedItem = 2; //
+                    myAlertBuilder.setSingleChoiceItems(delivery_options, checkedItem, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
+                            switch (item) {
+                                case 0:
+                                    shipping_cost = 50;
+                                    break;
+                                case 1:
+                                    shipping_cost = 10;
+                                    break;
+                                case 3:
+                                    shipping_cost = 0;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            Log.d(LOG_TAG, "Item selected from drop down is" + item);
                         }
-                        Log.d(LOG_TAG,"Item selected from drop down is"+item);
-                    }
-                });
-                myAlertBuilder.setPositiveButton("Place Order", new
-                        DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int item) {
-                                // User clicked OK button.
-                                Log.d(LOG_TAG,"function to call checkoutActivity ");
-                                Intent intent = new Intent(FloatingActionActivity.this, CheckOutActivity.class);
-                                double subtotal=calculateTotal();
-
-
-                                Map<String,Double> tax=taxCalculation(subtotal+shipping_cost);
-                                Log.d(LOG_TAG,"shopping cost is "+shipping_cost);
-                                intent.putExtra("SubTotal",df2.format(subtotal));
-                                intent.putExtra("Shipping_cost",df2.format(shipping_cost));
-                                intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
-                                intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
-                                intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")+shipping_cost));
-                                startActivity(intent);
-                            }
-                        });
-                myAlertBuilder.setNegativeButton("Cancel", new
-                        DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // User cancelled the dialog.
-                                Toast.makeText(getApplicationContext(), "Return to Menu",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                myAlertBuilder.show();
+                    });
+                    myAlertBuilder.setPositiveButton(getString(R.string.place_order), new
+                            DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int item) {
+                                    // User clicked OK button.
+                                    Log.d(LOG_TAG, "function to call checkoutActivity ");
+                                    Intent intent = new Intent(FloatingActionActivity.this, CheckOutActivity.class);
+                                    double subtotal = calculateTotal();
+                                    Map<String, Double> tax = taxCalculation(subtotal + shipping_cost);
+                                    Log.d(LOG_TAG, "shopping cost is " + shipping_cost);
+                                    intent.putExtra(getString(R.string.extra_SubTotal), df2.format(subtotal));
+                                    intent.putExtra(getString(R.string.extra_Shipping_cost), df2.format(shipping_cost));
+                                    intent.putExtra(getString(R.string.extra_Tax_GST), df2.format(tax.get(getString(R.string.gst))));
+                                    intent.putExtra(getString(R.string.extra_Tax_QST), df2.format(tax.get(getString(R.string.qst))));
+                                    intent.putExtra(getString(R.string.extra_Total), df2.format(subtotal + tax.get(tax.get(getString(R.string.gst))) + tax.get(tax.get(getString(R.string.qst))) + shipping_cost));
+                                    startActivity(intent);
+                                }
+                            });
+                    myAlertBuilder.setNegativeButton(getString(R.string.cancel_btn), new
+                            DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // User cancelled the dialog.
+                                    Toast.makeText(getApplicationContext(), getString(R.string.return_to_main),
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    myAlertBuilder.show();
+                }
             }
         });
         //getting the recyclerview from xml
@@ -235,7 +239,7 @@ public class FloatingActionActivity extends AppCompatActivity {
 //        tv_subtotal =(TextView) findViewById(R.id.non_taxTotal);
 //        tv_tax=(TextView) findViewById(R.id.tax);
 //        tv_total =(TextView) findViewById(R.id.tv_total);
- //       FloatingActionButton btn = findViewById(R.id.fab);
+      FloatingActionButton btn = findViewById(R.id.fab);
 //        //setting the value
 //        tv_subtotal.setText("Price Before Tax :"+df2.format(subtotal)+" "+"CAD");
 //        tv_tax.setText("Tax : GST: "+df2.format(tax.get("GST"))+" "+"CAD, QST: "+df2.format(tax.get("QST"))+" "+"CAD");
@@ -243,15 +247,7 @@ public class FloatingActionActivity extends AppCompatActivity {
 
         //enable the button and disable when
         //no product is added for order
-//        Log.d(LOG_TAG,"set property to enable/disable place order button");
-//        if(subtotal>0) {
-//            btn.setEnabled(true);
-//            btn.setBackgroundColor(Color.RED);
-//        }
-//        else{
-//            btn.setEnabled(false);
-//            btn.setBackgroundColor(Color.GRAY);
-//        }
+        Log.d(LOG_TAG,"set property to enable/disable place order button");
         return subtotal;
     }
 
@@ -261,19 +257,19 @@ public class FloatingActionActivity extends AppCompatActivity {
         double gst=total*0.05;
         double qst=total*0.09975;
         HashMap<String,Double> tax=new HashMap<String,Double>();
-        tax.put("GST",gst);
-        tax.put("QST",qst);
+        tax.put(getString(R.string.gst),gst);
+        tax.put(getString(R.string.qst),qst);
         return tax;
     }
-    public void insertOrder(View view) {
-        Log.d(LOG_TAG,"function to call checkoutActivity ");
-        Intent intent = new Intent(this, CheckOutActivity.class);
-        double subtotal=calculateTotal();
-        Map<String,Double> tax=taxCalculation(subtotal);
-        intent.putExtra("SubTotal",df2.format(subtotal));
-        intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
-        intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
-        intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")));
-        startActivity(intent);
-    }
+//    public void insertOrder(View view) {
+//        Log.d(LOG_TAG,"function to call checkoutActivity ");
+//        Intent intent = new Intent(this, CheckOutActivity.class);
+//        double subtotal=calculateTotal();
+//        Map<String,Double> tax=taxCalculation(subtotal);
+//        intent.putExtra("SubTotal",df2.format(subtotal));
+//        intent.putExtra("Tax_GST",df2.format(tax.get("GST")));
+//        intent.putExtra("Tax_QST",df2.format(tax.get("QST")));
+//        intent.putExtra("Total",df2.format(subtotal+tax.get("GST")+tax.get("QST")));
+//        startActivity(intent);
+//    }
 }

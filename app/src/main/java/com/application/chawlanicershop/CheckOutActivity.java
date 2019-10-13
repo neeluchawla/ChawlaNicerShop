@@ -14,11 +14,11 @@ public class CheckOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            shipping_cost=extras.getString("Shipping_cost");
-            subtotal = extras.getString("SubTotal");
-            tax_gst = extras.getString("Tax_GST");
-            tax_qst = extras.getString("Tax_QST");
-            total = extras.getString("Total");
+            shipping_cost=extras.getString(getString(R.string.extra_Shipping_cost));
+            subtotal = extras.getString(getString(R.string.extra_SubTotal));
+            tax_gst = extras.getString(getString(R.string.extra_Tax_GST));
+            tax_qst = extras.getString(getString(R.string.extra_Tax_QST));
+            total = extras.getString(getString(R.string.extra_Total));
         }
         setContentView(R.layout.activity_check_out);
         //find the view
