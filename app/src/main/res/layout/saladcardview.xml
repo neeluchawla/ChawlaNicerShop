@@ -68,14 +68,25 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/reduceQuantity"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            android:id="@+id/reduceQuantity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/textViewDesc"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/textViewQuantity"
+            android:src="@drawable/reduce_quantity" />
+
+            <ImageView
+                android:id="@+id/additional_info"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_below="@id/textViewDesc"
-                android:layout_marginLeft="17dp"
-                android:layout_marginTop="3dp"
-                android:layout_toRightOf="@id/textViewQuantity"
-                android:src="@drawable/reduce_quantity" />
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/reduceQuantity"
+                android:background="#002E1A1A"
+                android:src="@drawable/ic_add_for_question" />
 
             <TextView
                 android:id="@+id/price_label"

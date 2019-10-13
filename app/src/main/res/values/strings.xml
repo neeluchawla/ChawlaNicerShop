@@ -61,4 +61,10 @@
     <string name="contact_message_email">By Email : saladbar@gmail.com</string>
     <string name="total">Total :</string>
     <string name="temp_price">Price as of now before Tax :</string>
+    <string name="clear_message">No item selected to clear</string>
+    <string name="clear_menu">Menu quantity is reset to 0</string>
+    <string name="share_with_friend">Shared with friend</string>
+    <string name="more">More Info</string>
+    <string name="veg">Veg :</string>
+    <string name="gluten">,Gluten Free :</string>
 </resources>

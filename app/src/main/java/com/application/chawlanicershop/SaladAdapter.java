@@ -2,12 +2,18 @@ package com.application.chawlanicershop;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
@@ -101,7 +107,7 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
         private final String LOG_TAG =
                 ProductViewHolder.class.getSimpleName();
         TextView textViewTitle, textViewDesc, textViewQuantity, textViewPrice,textViewSubTotal;
-        ImageView imageView,reduce_quantity,add_quantity;
+        ImageView imageView,reduce_quantity,add_quantity,additional_info;
         final SaladAdapter saladAdapter;
 
         public ProductViewHolder(View itemView,SaladAdapter adapter) {
@@ -115,6 +121,47 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
             textViewPrice = itemView.findViewById(R.id.textViewPrice);
             imageView = itemView.findViewById(R.id.imageView);
             textViewSubTotal=itemView.findViewById(R.id.textViewSubTotal);
+            additional_info=(ImageView) itemView.findViewById(R.id.additional_info);
+            additional_info.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popup = new PopupMenu(additional_info.getContext(), v);
+
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.share:
+                                    Toast.makeText(additional_info.getContext(), R.string.share_with_friend,
+                                            Toast.LENGTH_SHORT).show();
+                                    return true;
+                                case R.id.Mail:
+                                    Toast.makeText(additional_info.getContext(), R.string.share_with_friend,
+                                            Toast.LENGTH_SHORT).show();
+                                    return true;
+                                case R.id.MoreInfo:
+                                    AlertDialog.Builder myAlertBuilder;
+                                    myAlertBuilder = new
+                                            AlertDialog.Builder(additional_info.getContext());
+                                    myAlertBuilder.setTitle(R.string.more);
+                                    int mPosition = getLayoutPosition();
+                                    Log.d(LOG_TAG,String.valueOf(mPosition));
+                                    myAlertBuilder.setMessage("Veg: "+(saladList.get(mPosition).getVeg()==true?"Yes":"No")+" ,Gluten Free"+(saladList.get(mPosition).getGluten_free()==true?"Yes":"No"));
+                                    myAlertBuilder.show();
+                                   return true;
+                                default:
+                                   return false;
+                            }
+                        }
+                    });
+                    // here you can inflate your menu
+                    popup.inflate(R.menu.menu_pop_up);
+
+
+
+                    popup.show();
+                }
+            });
             this.saladAdapter = adapter;
             itemView.setOnClickListener(this);
         }

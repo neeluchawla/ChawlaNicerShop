@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchMenuActivity(View view) {
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this, FloatingActionActivity.class);
         Log.d(LOG_TAG,"use intent to call menuactivity");
         startActivity(intent);
     }

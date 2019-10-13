@@ -19,6 +19,7 @@ public class Salad {
     private String subtotal;
     private int addQuantity;
     private int subQuantity;
+    private boolean veg=false,gluten_free=false;
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     private static final String LOG_TAG =
@@ -28,13 +29,15 @@ public class Salad {
         this.thumbnail = thumbnail;
     }
 
-    public Salad(int id, String title, String description, double price, int thumbnail) {
+    public Salad(int id, String title, String description, double price, int thumbnail,boolean veg,boolean gluten_free) {
         Log.d(LOG_TAG,"constructor to set value");
         this.title = title;
         this.price = price;
         this.thumbnail=thumbnail;
         this.description=description;
         this.id=id;
+        this.veg=veg;
+        this.gluten_free=gluten_free;
     }
 
     public String getTitle() {
@@ -103,5 +106,19 @@ public class Salad {
         }
     }
 
+    public Boolean getVeg() {
+        return veg;
+    }
+
+    public void setVeg(Boolean veg) {
+        this.veg = veg;
+    }
+    public Boolean getGluten_free() {
+        return gluten_free;
+    }
+
+    public void setGluten_free(Boolean gluten_free) {
+        this.gluten_free = gluten_free;
+    }
 
 }

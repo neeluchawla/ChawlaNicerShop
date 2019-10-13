@@ -19,30 +19,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.droidcafe.MainActivity">
     <item
-        android:id="@+id/subtotal_temp"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_add_for_total"
-        android:title="Subtotal"
-        app:showAsAction="always"
-        />
-
-    <!--<item-->
-        <!--android:id="@+id/clear_selection"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:icon="@drawable/ic_add_for_clear"-->
-        <!--android:title="Subtotal"-->
-        <!--app:showAsAction="always"-->
-        <!--/>-->
+        android:id="@+id/share"
+        android:title="Share"/>
     <item
-        android:id="@+id/action_contact_phone"
-        android:orderInCategory="100"
-        android:title="@string/action_contact_phone"
-        app:showAsAction="never" />
+        android:id="@+id/Mail"
+        android:title="Mail"/>
     <item
-        android:id="@+id/action_contact_email"
-        android:orderInCategory="100"
-        android:title="@string/action_contact_email"
-        app:showAsAction="never" />
+        android:id="@+id/MoreInfo"
+        android:title="More Information"/>
 
 
 

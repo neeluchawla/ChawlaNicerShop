@@ -96,7 +96,8 @@ public class FloatingActionActivity extends AppCompatActivity {
                                     intent.putExtra(getString(R.string.extra_Shipping_cost), df2.format(shipping_cost));
                                     intent.putExtra(getString(R.string.extra_Tax_GST), df2.format(tax.get(getString(R.string.gst))));
                                     intent.putExtra(getString(R.string.extra_Tax_QST), df2.format(tax.get(getString(R.string.qst))));
-                                    intent.putExtra(getString(R.string.extra_Total), df2.format(subtotal + tax.get(tax.get(getString(R.string.gst))) + tax.get(tax.get(getString(R.string.qst))) + shipping_cost));
+                                    Log.d(LOG_TAG, "shopping cost is ccc  "+shipping_cost  +" "+ subtotal +" "+tax.get("GST")+" "+tax.get("QST"));
+                                    intent.putExtra(getString(R.string.extra_Total), df2.format(subtotal + tax.get(getString(R.string.gst)) + tax.get(getString(R.string.qst)) + shipping_cost));
                                     startActivity(intent);
                                 }
                             });
@@ -129,7 +130,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad1_title),
                         getString(R.string.salad1_description),
                         20.99,
-                        R.drawable.sesame_salad));
+                        R.drawable.sesame_salad,false,false));
 
         saladList.add(
                 new Salad(
@@ -137,7 +138,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad2_title),
                         getString(R.string.salad2_description),
                         11.49,
-                        R.drawable.asian_salad));
+                        R.drawable.asian_salad,true,false));
 
         saladList.add(
                 new Salad(
@@ -145,7 +146,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad3_title),
                         getString(R.string.salad3_description),
                         14.49,
-                        R.drawable.caesar_salad));
+                        R.drawable.caesar_salad,false,false));
 
         saladList.add(
                 new Salad(
@@ -153,7 +154,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad4_title),
                         getString(R.string.salad4_description),
                         13.99,
-                        R.drawable.harvest_salad));
+                        R.drawable.harvest_salad,true,true));
 
         saladList.add(
                 new Salad(
@@ -161,7 +162,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad5_title),
                         getString(R.string.salad5_description),
                         13.99,
-                        R.drawable.tokyo_salad));
+                        R.drawable.tokyo_salad,true,false));
 
         saladList.add(
                 new Salad(
@@ -169,7 +170,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad6_title),
                         getString(R.string.salad6_description),
                         15.49,
-                        R.drawable.cobb_salad));
+                        R.drawable.cobb_salad,false,false));
 
         saladList.add(
                 new Salad(
@@ -177,7 +178,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad7_title),
                         getString(R.string.salad7_description),
                         15.99,
-                        R.drawable.endless_summer_salad));
+                        R.drawable.endless_summer_salad,false,true));
 
         saladList.add(
                 new Salad(
@@ -185,7 +186,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad8_title),
                         getString(R.string.salad8_description),
                         13.99,
-                        R.drawable.habibi_salad));
+                        R.drawable.habibi_salad,true,true));
 
         saladList.add(
                 new Salad(
@@ -193,7 +194,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad9_title),
                         getString(R.string.salad9_description),
                         14.49,
-                        R.drawable.the_wolfe_salad));
+                        R.drawable.the_wolfe_salad,true,false));
 
         saladList.add(
                 new Salad(
@@ -201,7 +202,7 @@ public class FloatingActionActivity extends AppCompatActivity {
                         getString(R.string.salad10_title),
                         getString(R.string.salad10_description),
                         11.49,
-                        R.drawable.the_clean_green_salad));
+                        R.drawable.the_clean_green_salad,true,true));
 
         //creating recyclerview adapter
         SaladAdapter adapter = new SaladAdapter(this, saladList);
@@ -253,14 +254,28 @@ public class FloatingActionActivity extends AppCompatActivity {
         return subtotal;
     }
 
+//    public void clearQuanitiy(){
+//        int i = 0;
+//        while(i < saladList.size()){
+//            if(saladList.get(i).getQuantity()>0) {
+//                saladList.get(i).setQuantity(0);
+//                Log.d(LOG_TAG,"clearing");
+//            }
+//            i++;
+//
+//        }
+
+//    }
     private Map<String,Double> taxCalculation(double total){
         Log.d(LOG_TAG,"function to calculate tax");
+        Log.d(LOG_TAG,"total"+ total);
         //gst 5% and qst 9.975%
         double gst=total*0.05;
         double qst=total*0.09975;
         HashMap<String,Double> tax=new HashMap<String,Double>();
         tax.put(getString(R.string.gst),gst);
         tax.put(getString(R.string.qst),qst);
+        Log.d(LOG_TAG,"total11"+ tax);
         return tax;
     }
 
@@ -307,6 +322,19 @@ public class FloatingActionActivity extends AppCompatActivity {
                 }
 
                 break;
+//            case R.id.clear_selection:
+//                Log.d(LOG_TAG,"clear selection");
+//                if(calculateTotal()<=0){
+//                    Toast.makeText(getApplicationContext(), getString(R.string.clear_message),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    clearQuanitiy();
+//                    Toast.makeText(getApplicationContext(), getString(R.string.clear_menu),
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//
+//                break;
             default:
                 // Do nothing
         }
