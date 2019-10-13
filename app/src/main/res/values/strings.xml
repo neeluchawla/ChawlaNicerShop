@@ -59,4 +59,6 @@
     <string name="contact_message_phone">By Phone : 5146231234</string>
     <string name="contact_alert">Contact Details</string>
     <string name="contact_message_email">By Email : saladbar@gmail.com</string>
+    <string name="total">Total :</string>
+    <string name="temp_price">Price as of now before Tax :</string>
 </resources>

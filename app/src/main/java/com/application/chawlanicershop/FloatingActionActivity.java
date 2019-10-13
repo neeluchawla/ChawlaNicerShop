@@ -294,6 +294,19 @@ public class FloatingActionActivity extends AppCompatActivity {
                 myAlertBuilder.setMessage(getString(R.string.contact_message_email));
                 myAlertBuilder.show();
                 break;
+            case R.id.subtotal_temp:
+                Log.d(LOG_TAG,"Current subtotal displayed");
+                myAlertBuilder.setTitle(getString(R.string.total));
+                if(calculateTotal()<=0){
+                    Toast.makeText(getApplicationContext(), getString(R.string.no_product_selected_message),
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    myAlertBuilder.setMessage(getString(R.string.temp_price) + df2.format(calculateTotal()) + " " + getString(R.string.currency));
+                    myAlertBuilder.show();
+                }
+
+                break;
             default:
                 // Do nothing
         }
