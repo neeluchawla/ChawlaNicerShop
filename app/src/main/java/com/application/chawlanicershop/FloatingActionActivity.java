@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -261,6 +263,43 @@ public class FloatingActionActivity extends AppCompatActivity {
         tax.put(getString(R.string.qst),qst);
         return tax;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    /**
+     * Handles app bar item clicks.
+     *
+     * @param item Item clicked.
+     * @return True if one of the defined items was clicked.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        AlertDialog.Builder myAlertBuilder = new
+                AlertDialog.Builder(FloatingActionActivity.this);
+        switch (item.getItemId()) {
+            case R.id.action_contact_phone:
+                Log.d(LOG_TAG,"selected contacts by phone");
+                myAlertBuilder.setTitle(getString(R.string.contact_alert));
+                myAlertBuilder.setMessage(getString(R.string.contact_message_phone));
+                myAlertBuilder.show();
+                break;
+            case R.id.action_contact_email:
+                Log.d(LOG_TAG,"selected contacts by email");
+                myAlertBuilder.setTitle(getString(R.string.contact_alert));
+                myAlertBuilder.setMessage(getString(R.string.contact_message_email));
+                myAlertBuilder.show();
+                break;
+            default:
+                // Do nothing
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 //    public void insertOrder(View view) {
 //        Log.d(LOG_TAG,"function to call checkoutActivity ");
 //        Intent intent = new Intent(this, CheckOutActivity.class);

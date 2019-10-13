@@ -54,4 +54,9 @@
     <string name="salad_subtotal">Salad Subtotal</string>
     <string name="gst">GST</string>
     <string name="qst">QST</string>
+    <string name="action_contact_phone">Contact By Phone</string>
+    <string name="action_contact_email">Contact By Email</string>
+    <string name="contact_message_phone">By Phone : 5146231234</string>
+    <string name="contact_alert">Contact Details</string>
+    <string name="contact_message_email">By Email : saladbar@gmail.com</string>
 </resources>
