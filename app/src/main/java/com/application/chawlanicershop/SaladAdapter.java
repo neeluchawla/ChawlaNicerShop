@@ -135,10 +135,6 @@ public class SaladAdapter extends RecyclerView.Adapter<SaladAdapter.ProductViewH
                                     Toast.makeText(additional_info.getContext(), R.string.share_with_friend,
                                             Toast.LENGTH_SHORT).show();
                                     return true;
-                                case R.id.Mail:
-                                    Toast.makeText(additional_info.getContext(), R.string.share_with_friend,
-                                            Toast.LENGTH_SHORT).show();
-                                    return true;
                                 case R.id.MoreInfo:
                                     AlertDialog.Builder myAlertBuilder;
                                     myAlertBuilder = new
